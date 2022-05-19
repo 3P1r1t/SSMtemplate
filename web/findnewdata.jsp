@@ -13,9 +13,6 @@
     <title>Title</title>
   </head>
   <body>
-  <c:forEach items="${list}" var="water">
-    ${water.water_id}--${water.water_oxy}--${water.pool_id}<br/>
-  </c:forEach>
-
+    ${list.water_id}--${list.water_oxy}--${list.pool_id}<br/>
   </body>
 </html>

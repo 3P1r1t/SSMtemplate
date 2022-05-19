@@ -17,7 +17,7 @@
 <!--        <property name="maxPoolSize" value="10"/>-->
 <!--    </bean>-->
     <bean class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close" id="dataSource">
-       <property name="url" value="jdbc:mysql://localhost:3306/ssmbuild?useSSL=false&amp;serverTimezone=Asia/Shanghai"/>
+       <property name="url" value="jdbc:mysql://localhost:3305/aasdata?useSSL=false&amp;serverTimezone=Asia/Shanghai"/>
         <property name="username" value="root"/>
         <property name="password" value="123456"/>
     </bean>
