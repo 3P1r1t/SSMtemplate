@@ -7,7 +7,7 @@ import top.spirit.repository.WaterRepository;
 import top.spirit.service.WaterService;
 
 import java.util.List;
-
+//获得水质数据库信息
 @Service
 public class WaterServiceImpl implements WaterService {
 

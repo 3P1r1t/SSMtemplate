@@ -15,7 +15,7 @@ public class BookHandler {
     @GetMapping("/findAll")
     public ModelAndView index(){
         ModelAndView mv = new ModelAndView();
-        mv.setViewName("findnewdata");
+        mv.setViewName("newWaterdata");
         mv.addObject("list",bookService.findAll2());
         return mv;
     }

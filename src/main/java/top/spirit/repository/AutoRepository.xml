@@ -4,9 +4,26 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="top.spirit.repository.AutoRepository">
     <select id="findAll" resultType="top.spirit.entity.AutoStatus">
-        select * from auto_rule_status
+        select * from water_auto_rule
     </select>
     <select id="findOn" resultType="top.spirit.entity.AutoStatus">
-        SELECT * FROM auto_rule_status where on_status = 1
+        SELECT * FROM water_auto_rule where on_status = 1
     </select>
+
+    <insert id="insertAutoResult" parameterType="Map">
+        INSERT INTO auto_result(`pool_id`,`auto_time`,`oxy`,`tem`,`an`,`ph`,`salt`, `feed`, `auto_message`, `alarm_id`)
+            VALUE (#{pool_id},#{auto_time},#{oxy},#{tem},#{an},#{ph},#{salt},#{feed},#{auto_message},#{alarm_id})
+    </insert>
+
+    <insert id="insertAutoRule" parameterType="Map">
+        INSERT INTO water_auto_rule(`auto_oxy`,`auto_tem`,`auto_an`,auto_ph,auto_salt,`on_status`)
+            VALUE (#{auto_oxy},#{auto_tem},#{auto_an},#{auto_ph},#{auto_salt},#{on_status})
+    </insert>
+    <delete id="deleteAutoRule" parameterType="int">
+        delete from water_auto_rule where id=#{id}
+    </delete>
+    <update id="updateAutoRule" parameterType="Map">
+        update water_auto_rule set `auto_oxy`=#{auto_oxy},`auto_tem`=#{auto_tem},`auto_an`=#{auto_an},auto_ph=#{auto_ph},auto_salt=#{auto_salt},`on_status`=#{on_status}
+        where id=#{id}
+    </update>
 </mapper>

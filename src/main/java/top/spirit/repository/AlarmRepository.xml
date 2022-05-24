@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.spirit.repository.AlarmRepository">
+    <!--    查找所有报警规则-->
+    <select id="findWaterAlarmRuleAll" resultType="top.spirit.entity.WaterAlarmRule">
+        select * from water_alarm_rule
+    </select>
+    <!--    查找启动的报警规则-->
+    <select id="findWaterAlarmRuleOn" resultType="top.spirit.entity.WaterAlarmRule">
+        select * from water_alarm_rule where on_status
+    </select>
+    <!--    查找所有报警信息-->
+    <select id="findAlarmResultAll" resultType="top.spirit.entity.AlarmResultStatus">
+        select * from alarm_result_status
+    </select>
+    <!--    查找未处理的报警-->
+    <select id="findAlarmResultOn" resultType="top.spirit.entity.AlarmResultStatus">
+        SELECT * FROM alarm_result_status where alarm_status
+    </select>
+    <!--    查找已处理的报警-->
+    <select id="findAlarmResultOff" resultType="top.spirit.entity.AlarmResultStatus">
+        SELECT * FROM alarm_result_status where alarm_status =0
+    </select>
+<!--    插入报警信息-->
+    <insert id="insertAlarmWater" parameterType="Map">
+        INSERT INTO alarm_result_status(`water_id`,  `pool_id`,`alarm_status`,`water_oxy`,`water_tem`, `water_an`, `water_ph`, `water_salt`, `alarm_time`,`alarm_rule_id`,`alarm_message`,`if_view`)
+        VALUE (#{water_id},#{pool_id},#{alarm_status},#{water_oxy},#{water_tem},#{water_an},#{water_ph},#{water_salt},#{alarm_time},#{alarm_rule_id},#{alarm_message},#{if_view})
+    </insert>
+    <!--    插入报警规则-->
+    <insert id="insertWaterAlarmRule" parameterType="Map">
+        INSERT INTO water_alarm_rule(`oxy_max`,`oxy_min`,`tem_max`,`tem_min`,`an_max`,`an_min`,`ph_max`,`ph_min`,`salt_max`,`salt_min`,`on_status`)
+            VALUE (#{oxy_max},#{oxy_min},#{tem_max},#{tem_min},#{an_max},#{an_min},#{ph_max},#{ph_min},#{salt_max},#{salt_min},#{on_status})
+    </insert>
+    <!--    删除报警规则-->
+    <delete id="deleteWaterAlarmRule" parameterType="int">
+        delete from water_alarm_rule where id=#{id}
+    </delete>
+    <!--    更新报警规则-->
+    <update id="updateWaterAlarmRule" parameterType="Map">
+        update water_alarm_rule set `oxy_max`=#{oxy_max},`oxy_min`=#{oxy_min},`tem_max`=#{tem_max},`tem_min`=#{tem_min},`an_max`=#{an_max},`an_min`=#{an_min},`ph_max`=#{ph_max},`ph_min`=#{ph_min},`salt_max`=#{salt_max},`salt_min`=#{salt_min},`on_status`=#{on_status}
+        where id=#{id}
+    </update>
+
+
+</mapper>
+
